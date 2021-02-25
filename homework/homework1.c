@@ -6,8 +6,9 @@ void quitamq(char linea[MAX], char lineasin[MAX]); /* Function that eliminate < 
 void quitae(char linea [MAX], char lineasin[MAX]); /* Function that change the \t and ' ' (input, output)  */
 void strong(char linea [MAX], char lineasinetiquetas[MAX]); /*Function that search <strong> and <\strong> to change the \t and ' '  by _ (input, output) */
 char linea[MAX], lineasin[MAX];
-int saca();
-int main() {
+int fuera();
+int main() 
+{
   extern char linea[];
   char lineasin[MAX];
   char lineasinetiquetas[MAX];
@@ -22,7 +23,8 @@ int main() {
 
   int l = 0;
 
-  while ((l = saca()) == 0) {
+  while ((l = fuera()) == 0) 
+  {
     if (strstr(linea, "<form") != NULL) { // when we found"<form"stop ignoring
       ignoreforms = 1;
     }
@@ -75,7 +77,7 @@ int main() {
   }
   return 0;
 }
-int saca() { // Function that give us the line, modification of a SATU ELISA SCHAEFFER  code Longest2.c nocomment.c
+int fuera() { // Function that give us the line, modification of a SATU ELISA SCHAEFFER  code Longest2.c nocomment.c
 
   extern char linea[];
   int c, i = 0;
