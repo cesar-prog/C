@@ -1,0 +1,19 @@
+#include <stdio.h>
+#define LOWER 0
+#define UPPER 300
+#define STEP 50
+
+int main () {
+    double t;
+    int direction = 1;
+    
+    if (direction == 0) {
+        printf("F\tC\n------------\n");
+    } else {
+        printf("C\tF\n-------------\n");
+    }
+    for (t = LOWER; t <= UPPER; t += STEP) {
+        printf("%3.2f\t%3.2f\n", t, direction == 0 ? 5 * (t - 32) / 9 : 9 * t / 5 + 32);
+    }
+    return 0;
+}
