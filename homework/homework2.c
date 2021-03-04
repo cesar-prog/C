@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#define K 150
+#define K 13
 
 void prime(int n);
 void binary(int j);
@@ -23,7 +23,7 @@ void binary(int j)
     }
     for(int x=6;x>=0;--x)
     {
-        printf("%3ld",base[x]);
+        printf("%0ld",base[x]);
     }
     printf("\n");
 
