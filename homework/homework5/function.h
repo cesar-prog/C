@@ -2,7 +2,7 @@
 #define ROWS 10
 
 int obtenerMinasCercanas(int fila, int columna, char tablero[ROWS][COLUMNS]);
-int aleatorioEnRango(int min, int max);
+int aleatorioEnRango(int minimo, int maximo);
 void iniciarTablero(char tablero[ROWS][COLUMNS]);
 void colocarMina(int fila, int columna, char tablero[ROWS][COLUMNS]);
 void colocarMinasAleatoriamente(char tablero[ROWS][COLUMNS]);
