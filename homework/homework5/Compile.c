@@ -1,3 +1,3 @@
 Como compilar
-Primero abres el main.c y después abres el .c y .h
+Primero abres el function .c, luego function .h y al final main.c
 Todos los archivos estan en la carpeta homework5
