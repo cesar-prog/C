@@ -67,12 +67,12 @@ int main() {
     int status = abrirCasilla(columna, fila, tablero);
     if (noHayCasillasSinAbrir(tablero)) {
       printf("* YOU ARE A CRACK *\n");
-      printf("YOU WON");
+      printf("GG!");
       deberiaMostrarMinas = 1;
     } else if (status == ESPACIO_YA_DESCUBIERTO) {
       printf("YOU ALREADY OPEN THIS BOX\n");
     } else if (status == MINA_ENCONTRADA) {
-      printf("IM SORRY BUT YOU LOOSE :( \n");
+      printf("YOU LOOSE! XD :( \n");
       printf("TRY AGAIN");
       deberiaMostrarMinas = 1;
     }
