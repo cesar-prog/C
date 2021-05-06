@@ -1,3 +1,0 @@
-Introduces hearde.h, luego main.c y function.h
-Generarás pines y horas de semana
-El código de inicio es "0" =)
