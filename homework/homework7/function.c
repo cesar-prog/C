@@ -1,3 +1,5 @@
+/* no terminado */
+
 #include "header.h"
 
 int Registro(void){
