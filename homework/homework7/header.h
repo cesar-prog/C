@@ -9,4 +9,4 @@ int verAsistencias(int pin);
 int TiempoWork(int pin);
 
 /* Hecho con la idea de Abner y AntonioCG2002*/
-/* no terminada la homework7*/
+/* no terminada homework7*/
