@@ -1,6 +1,6 @@
 /*Include main.c, funcionts.h and the list.txt, the press enter to te file "list.txt" to start in the fifth line*/
 
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "functions.h"
 #include<string.h>
