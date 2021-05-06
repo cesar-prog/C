@@ -9,11 +9,11 @@ int main(){
     
     printf("El día de hoy es %2d/%2d/%d", tlocal->tm_mday,tlocal->tm_mon+1,tlocal->tm_year+1900); //Mostrar Fecha
     printf("\nSon las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
-    printf("\n¿Eres usuario o administrador?\n1 para usuario, 2 si eres admi\n"); //Bienvenida
+    printf("\n¿Eres usuario o administrador?\n1 si es que eres un usuario, 2 si eres administrador\n"); //Bienvenida
     scanf("%d", &option);
     if (option == 1){ //opciones de trabajador
         option = 0;
-        printf("Intruduce tu pin: \n");
+        printf("Intruduce tu pin: \n"); /* pin es = 0*/
         scanf("%d", &pin);
         if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
             printf("Ese pin no existe.\n");
