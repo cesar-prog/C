@@ -1,3 +1,5 @@
+#define "header.c"
+
 int main(){
     FILE *flujo;
     int temppin, temptime, flag = 1, pin, option, bucle = 1, user;
