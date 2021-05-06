@@ -7,8 +7,8 @@ int main(){
     struct tm *tlocal = localtime(&tiempo);
     char output[128], buffer[32];
     
-    printf("El día de hoy es %2d/%2d/%d", tlocal->tm_mday,tlocal->tm_mon+1,tlocal->tm_year+1900); //Mostrar Fecha
-    printf("\nSon las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
+    printf("El día de hoy es %2d/%2d/%d", tlocal->tm_mday,tlocal->tm_mon+1,tlocal->tm_year+1900); //Fecha
+    printf("\nSon las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Hora
     printf("\n¿Eres usuario o administrador?\n1 si es que eres un usuario, 2 si eres administrador\n"); //Bienvenida
     scanf("%d", &option);
     if (option == 1){ //opciones de trabajador
@@ -69,7 +69,7 @@ int main(){
         else{
             while (bucle == 1){
                 option = 0;
-                printf("\nQue tal admi, en que te puedo servir ahora\n");
+                printf("\nEn que te puedo servir ahora?\n");
                 printf("1 si quieres ver las asistencias de un usuario    \t2 si quieres agregar un nuevo trabajador\n");
                 printf("3 si quiero ver las horas trabajadas de un usuario\t4 si quieres salir\n");
                 fflush(stdin);
