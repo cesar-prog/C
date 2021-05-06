@@ -1,4 +1,3 @@
-
 #include "header.h"
 
 int Registro(void){
@@ -118,3 +117,4 @@ int HorasLab(int pin){
         }
     }
 }
+/* agradecimientos rulgamer7, anacatytamez y orlagomez/*
