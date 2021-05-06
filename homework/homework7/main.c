@@ -7,9 +7,9 @@ int main(){
     struct tm *tlocal = localtime(&tiempo);
     char output[128], buffer[32];
     
-    printf("Hoy es %2d/%2d/%d", tlocal->tm_mday,tlocal->tm_mon+1,tlocal->tm_year+1900); //Mostrar Fecha
+    printf("El día de hoy es %2d/%2d/%d", tlocal->tm_mday,tlocal->tm_mon+1,tlocal->tm_year+1900); //Mostrar Fecha
     printf("\nSon las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
-    printf("\nEres usuario o administrador?\n1 para usuario, 2 si eres admi\n"); //Bienvenida
+    printf("\n¿Eres usuario o administrador?\n1 para usuario, 2 si eres admi\n"); //Bienvenida
     scanf("%d", &option);
     if (option == 1){ //opciones de trabajador
         option = 0;
@@ -38,7 +38,7 @@ int main(){
             while (flag != 0){
                 fscanf(flujo, "%d %d", &temppin, &temptime);
                 if (temppin == pin){
-                    temptime += verTiempoTrabajado(pin);
+                    temptime += TiempoWork(pin);
                     fseek(flujo, -3, SEEK_CUR);
                     fprintf(flujo, "%d %d", pin, temptime);
                     fflush(flujo);
@@ -49,11 +49,11 @@ int main(){
             flujo = fopen("log.txt", "a");
             printf("Se ha registrado tu salida pin:%d hoy:%s %s\n", pin, output, buffer);
             printf("Salida marcada a las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
-            fprintf(flujo, "s%d %lu %s %s %d\n", pin, (unsigned long)time(NULL), output, buffer, verTiempoTrabajado(pin));
-            printf("\n Has trabajado por %d segundos \n Nos vemos pronto\n", verTiempoTrabajado(pin));
+            fprintf(flujo, "s%d %lu %s %s %d\n", pin, (unsigned long)time(NULL), output, buffer, TiempoWork(pin));
+            printf("\n Has trabajado por %d segundos \n Nos vemos pronto\n", TiempoWork(pin));
             fflush(flujo);
             fclose(flujo);
-            fprintf(flujo, "%d %d\n", pin, verTiempoTrabajado(pin));
+            fprintf(flujo, "%d %d\n", pin, TiempoWork(pin));
             break;
         }
     }
@@ -87,7 +87,7 @@ int main(){
                     verAsistencias(pin);
                     break;
                 case 2://creacion de usuario
-                    crearRegistro();
+                    Registro();
                     break;
                 case 3://reporte de  registros
                     printf("Escribe el pin del usuario para ver sus asistencias\n");
@@ -98,7 +98,7 @@ int main(){
                         printf("Lo siento pero nos tenemos que despedir, hasta pronto!\n");
                         exit(1);
                     }
-                    printf("El usuario con el pin: %d,  ha trabajado por %d segundos \n", pin, calcHorasLaboradas(pin));
+                    printf("El usuario con el pin: %d,  ha trabajado por %d segundos \n", pin, HorasLab(pin));
                     break;
                     case 4:
                         exit(1);
