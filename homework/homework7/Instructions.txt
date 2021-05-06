@@ -1,0 +1,2 @@
+En GDB puedes marcar header.h primero, después poner main.c y function.c
+El código fue creado con base a los repositorios de Anber y AntonioCG2002.
