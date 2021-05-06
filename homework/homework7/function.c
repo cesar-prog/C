@@ -1,7 +1,7 @@
 
 #include "header.h"
 
-int crearRegistro(void){
+int Registro(void){
     int newpin = 1, pin, flag = 0;
     char horae[30], horas[30], dias[40];
     FILE *fichero;
@@ -85,7 +85,7 @@ int verAsistencias(int pin){
     printf("\nEl usuario %d tiene : %d asistencias\n", pin, asistencias);
 }
 
-int verTiempoTrabajado(int pin){
+int TiempoWork(int pin){
     char tiempo1[20], tiempo2[20];
     int t1, t2, tiempo;
     int c, asistencias = 0;
@@ -106,7 +106,7 @@ int verTiempoTrabajado(int pin){
     fclose(fichero);
     return tiempo;
 }
-int calcHorasLaboradas(int pin){
+int HorasLab(int pin){
     int horas, c, pinarch;
     FILE *fichero;
     fichero = fopen("times.txt", "r");
