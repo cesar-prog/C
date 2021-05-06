@@ -1,231 +1,115 @@
-/*Include main.c, funcionts.h and the list.txt, the press enter to te file "list.txt" to start in the fifth line*/
+#include "header.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "functions.h"
-#include<string.h>
-#include<math.h>
-#include<conio.h>
-#include <time.h>
-#define NAME 10
-#define DAY 10
-#define ENTRY 4
-#define EGRESS 4
-#define NEWNAME 10
-#define NEWDAY 10
-
-int anterior;
-void crear (void);
-void mostrar (void);
-void add (void);
-void showList (void);
-
-
-int menu (void){
- printf ("\t\t<<<MENU>>>\n");
- printf ("\t1. Add employee.\n");
- printf ("\t2. Attendance.\n");
- printf ("\t3. Attendance records.\n");
- printf ("\t4. Hours.\n");
- printf ("\t5. Exit\n\n");
- printf ("Choose an option:  ");
-}
-
-int main(int x, char** y) {
-  int op;
-  int F=0;
-  char c;
-   int i, count = 0;
-   employee** e;
-   
- 
-  
-  showList();
-  op==menu();
- scanf ("%d", &op);
- printf ("\n\n");
- while (op !=7){
-  if (op==1){
-   printf ("\nAdd employee.\n");
-   add ();
-   showList();
-   op==menu();
-   scanf ("%d", &op);
-   
-   } 
-   
-   else{
-    if(op==2){
-     printf ("\nAttendance.\n");
-     crear ();
-     op==menu();
-     scanf ("%d", &op);
-     
-     
+int main(){
+    FILE *flujo;
+    int temppin, temptime, flag = 1, pin, option, bucle = 1, user;
+    time_t tiempo = time(0);
+    struct tm *tlocal = localtime(&tiempo);
+    char output[128], buffer[32];
+    
+    printf("Hoy es %2d/%2d/%d", tlocal->tm_mday,tlocal->tm_mon+1,tlocal->tm_year+1900); //Mostrar Fecha
+    printf("\nSon las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
+    printf("\nEres usuario o administrador?\n1 para usuario, 2 si eres admi\n"); //Bienvenida
+    scanf("%d", &option);
+    if (option == 1){ //opciones de trabajador
+        option = 0;
+        printf("Intruduce tu pin: \n");
+        scanf("%d", &pin);
+        if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
+            printf("ese pin no existe, checa el registro de pines validos en system.tx o crea a ese usuario como administrador\n");
+            printf("Hasta pronto!\n");
+            exit(1);
+        }
+        printf("Persona #%d  ** Bienvenido al registro ** \nQue deseas hacer?\n", pin);
+        printf("-Presiona 1 para marcar entrada-\n-Presiona 2 para marcar salida-\n");
+        scanf("%d", &option);
+        switch (option){
+        case 1: //entrada
+            flujo = fopen("log.txt", "a");
+            printf("Se ha registrado tu entrada pin:%d hoy:%s %s\n", pin, output, buffer);
+            printf("Entrada marcada a las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
+            fprintf(flujo, "e%d %lu %s %s\n", pin, (unsigned long)time(NULL), output, buffer);
+            printf("\nÉxito en el trabajo");
+            fflush(flujo);
+            fclose(flujo);
+            break;
+        case 2: //salida
+            flujo = fopen("times.txt", "r+");
+            while (flag != 0){
+                fscanf(flujo, "%d %d", &temppin, &temptime);
+                if (temppin == pin){
+                    temptime += verTiempoTrabajado(pin);
+                    fseek(flujo, -3, SEEK_CUR);
+                    fprintf(flujo, "%d %d", pin, temptime);
+                    fflush(flujo);
+                    fclose(flujo);
+                    flag = 0;
+                }
+            }
+            flujo = fopen("log.txt", "a");
+            printf("Se ha registrado tu salida pin:%d hoy:%s %s\n", pin, output, buffer);
+            printf("Salida marcada a las %d:%d:%2d",tlocal->tm_hour-5,tlocal->tm_min,tlocal->tm_sec); //Mostrar Hora
+            fprintf(flujo, "s%d %lu %s %s %d\n", pin, (unsigned long)time(NULL), output, buffer, verTiempoTrabajado(pin));
+            printf("\n Has trabajado por %d segundos \n Nos vemos pronto\n", verTiempoTrabajado(pin));
+            fflush(flujo);
+            fclose(flujo);
+            fprintf(flujo, "%d %d\n", pin, verTiempoTrabajado(pin));
+            break;
+        }
+    }
+    
+    else if (option == 2){ //opciones de admin
+        option = 0;
+        printf("Bienvenido, intruduce tu pin: \n");
+        scanf("%d", &pin);
+        if (pin != 000){
+            printf("NO ERES ADMINISTRADOR\n");
+            EOF;
+        }
+        else{
+            while (bucle == 1){
+                option = 0;
+                printf("\nQue tal admi, en que te puedo servir ahora\n");
+                printf("Marca 1 si quieres ver las asistencias de un usuario    \tMarca 2 si quieres agregar un nuevo trabajador\n");
+                printf("Marca 3 si quiero ver las horas trabajadas de un usuario\tMarca 4 si quieres salir\n");
+                fflush(stdin);
+                scanf("%d", &option);
+                switch (option){// acciones
+                case 1: //Reporte de asistencias
+                    printf("Escribe el pin del usuario para ver sus asistencias(asegurate de que sea valido): \n");
+                    fflush(stdin);
+                    scanf("%d", &pin);
+                    if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
+                        printf("Ese pin no existe, checa el registro de pines validos en system.tx o crea a ese usuario \n");
+                        printf("Hasta pronto!\n");
+                        exit(1);
+                    }
+                    verAsistencias(pin);
+                    break;
+                case 2://creacion de usuario
+                    crearRegistro();
+                    break;
+                case 3://reporte de  registros
+                    printf("Escribe el pin del usuario para ver sus asistencias(asegurate de que sea valido): \n");
+                    fflush(stdin);
+                    scanf("%d", &pin);
+                    if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
+                        printf("Ese pin no existe, checa el registro de pines validos en system.tx o crea a ese usuario \n");
+                        printf("Lo siento pero nos tenemos que despedir, hasta pronto!\n");
+                        exit(1);
+                    }
+                    printf("El usuario con el pin: %d,  ha trabajado por %d segundos \n", pin, calcHorasLaboradas(pin));
+                    break;
+                    case 4:
+                        exit(1);
+                        break;
+                }
+            }
+        }
     }
     else{
-     if(op==3){
-         printf ("\nAttendance records.\n");
-      mostrar ();
-      
-      op==menu();
-      scanf ("%d", &op);
-     }
-     else {
-      if(op==4){
-       printf ("\nHours.\n"); 
-       mostrarReporte ();
-       op==menu();
-       scanf ("%d", &op);
-      }
-      else {
-      if(op==5){
-      
-       break;
-      }
-      }
-     }
+        printf("No escribiste una opcion valida. Presione enter para salir ...");
+        exit(1);
     }
-   }
- }
-
-  
-  return 0;
 }
-
-void crear()
-{
-  int F=0;
-  int terminar;
-  anterior=0;
-  terminar=0;
-   for (F=anterior; F<200&&terminar!=1; F++)
-  {
-   printf ("Worker ID:\n");
-   fflush (stdin);
-   scanf ("%s", eRegister[F].idemp);
-   printf ("Enter day:\n");
-   fflush (stdin);
-   scanf ("%s", eRegister[F].workDay);
-   printf ("Check-in time:\n");
-   fflush (stdin);
-   scanf ("%s", eRegister[F].start);
-   printf ("Departure time:\n");
-   fflush (stdin);
-   scanf ("%s", eRegister[F].end);
-   printf ("Have you finished registering workers?\n1=Yes\t 2=No");
-   scanf ("%d", &terminar);
-   anterior==F;
-   printf ("\n\n");
-  }
-   if (anterior==200)
-   {
-    printf ("\n List is full");
-   }
-}
-
-void mostrar ()
-{
- int F;
- F=0;
- anterior=0;
- printf ("PIN  DAY  START  END   \n--------------------   \n");
- for (F=anterior; F<200; F++)
- {
-  
-  printf ("%s  ", eRegister[F].idemp);
-  printf ("%s ", eRegister[F].workDay);
-  printf ("%s ", eRegister[F].start);
-  printf ("%s\n ", eRegister[F].end);
-  
-  anterior==F;
- }
- 
-}
-
-void add()
-{
-    int newpin;
-    char newday[NEWDAY + 1];
-    int newentry;
-    int newdeparture;
-    int i;
-    srand(time(NULL));
-    char newname[NEWNAME + 1];
-    FILE *list = fopen("list.txt", "a");
-    printf("New employee name\n");
-    scanf("%s", newname);
-    printf("Which day does this employee works?");
-    scanf("%s", newday);
-    newpin = 5 + rand()% (10 + 1);
-    newentry = 5 + rand()% (10 + 1);
-    newdeparture = newentry + 8;
-    fprintf(list, "%d %s %s %d %d\n", newpin, newname, newday, newentry, newdeparture);
-    fclose(list);
-    
-}
-
-void showList()
-{
-  int op;
-  int F=0;
-  char c;
-   int i, count = 0;
-   employee** e;
-   
-   FILE* list = fopen("list.txt", "r");
-   while ((c = fgetc(list)) != EOF) 
-   {
-     if (c == '\n') 
-     {
-       count++; 
-       
-     }
-    }
-  
-  e = (employee**)malloc(sizeof(employee*) * count);
-  rewind(list); 
-  for (i = 0; i < count; i++) 
-  {
-    e[i] = (employee*)malloc(sizeof(employee));
-    e[i]->name = (char*)malloc(sizeof(char) * (NAME + 1));
-    e[i]->day = (char*)malloc(sizeof(char) * (DAY + 1));
-    e[i]->entry = (char*)malloc(sizeof(char) * (ENTRY + 1));
-    e[i]->egress = (char*)malloc(sizeof(char) * (EGRESS + 1));
-    fscanf(list, "%u %s %s %s %s", &(e[i]->pin), e[i]->name, e[i]->day, e[i]->entry, e[i]->egress);    
-  }
-  
-  
-  fclose(list);
-  for (i = 0; i < count; i++) {
-    printf("Employee %u %s works on %s, from %s to %s \n", e[i]->pin, e[i]->name, e[i]->day, e[i]->entry, e[i]->egress);
-    
-    free(e[i]->name);
-    free(e[i]->day);
-    free(e[i]->entry);
-    free(e[i]->egress);
-    free(e[i]);
-  }
-  free(e);
- }
-
-void mostrarReporte ()
-{
- int F;
- int totalh;
- F=0;
- anterior=0;
- //Example --- printf ("PIN  DAY  START  END   \n--------------------   \n");
- FILE* pRecord = fopen("punctRecord.txt", "w");
- for (F=anterior; F<200; F++)
- {
-  
-  
-  totalh = eRegister[F].start - eRegister[F].end;
-  
-  
-  anterior==F;
- }
- fclose(pRecord);
-} 
- 
+/* agradecimiento a rulgamer7, anacatytamez y orlagomez*/ 
