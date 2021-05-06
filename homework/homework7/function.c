@@ -1,4 +1,3 @@
-/* no terminado */
 
 #include "header.h"
 
