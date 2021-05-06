@@ -70,7 +70,7 @@ int main(){
             while (bucle == 1){
                 option = 0;
                 printf("\n¿En que te puedo servir ahora?\n");
-                printf("1 Si quieres ver las asistencias de un usuario\n);
+                printf("1 Si quieres ver las asistencias de un usuario\n");
                 printf("2 Si deseas agregar un trabajador nuevo\n");
                 printf("3 Si quiero ver las horas trabajadas de un usuario\n");
                 printf("4 Si deseas salir de este apartado\n");
