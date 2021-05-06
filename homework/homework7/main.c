@@ -16,8 +16,8 @@ int main(){
         printf("Intruduce tu pin: \n");
         scanf("%d", &pin);
         if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
-            printf("ese pin no existe, checa el registro de pines validos en system.tx o crea a ese usuario como administrador\n");
-            printf("Hasta pronto!\n");
+            printf("Ese pin no existe.\n");
+            printf("Adios!\n");
             exit(1);
         }
         printf("Persona #%d  ** Bienvenido al registro ** \nQue deseas hacer?\n", pin);
@@ -63,24 +63,24 @@ int main(){
         printf("Bienvenido, intruduce tu pin: \n");
         scanf("%d", &pin);
         if (pin != 000){
-            printf("NO ERES ADMINISTRADOR\n");
+            printf("NO ERES ADMINISTRADOR, TRAIDOR\n");
             EOF;
         }
         else{
             while (bucle == 1){
                 option = 0;
                 printf("\nQue tal admi, en que te puedo servir ahora\n");
-                printf("Marca 1 si quieres ver las asistencias de un usuario    \tMarca 2 si quieres agregar un nuevo trabajador\n");
-                printf("Marca 3 si quiero ver las horas trabajadas de un usuario\tMarca 4 si quieres salir\n");
+                printf("1 si quieres ver las asistencias de un usuario    \t2 si quieres agregar un nuevo trabajador\n");
+                printf("3 si quiero ver las horas trabajadas de un usuario\t4 si quieres salir\n");
                 fflush(stdin);
                 scanf("%d", &option);
                 switch (option){// acciones
                 case 1: //Reporte de asistencias
-                    printf("Escribe el pin del usuario para ver sus asistencias(asegurate de que sea valido): \n");
+                    printf("Escribe el pin del usuario para ver sus asistencias\n");
                     fflush(stdin);
                     scanf("%d", &pin);
                     if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
-                        printf("Ese pin no existe, checa el registro de pines validos en system.tx o crea a ese usuario \n");
+                        printf("Ese pin no existe.\n");
                         printf("Hasta pronto!\n");
                         exit(1);
                     }
@@ -90,7 +90,7 @@ int main(){
                     crearRegistro();
                     break;
                 case 3://reporte de  registros
-                    printf("Escribe el pin del usuario para ver sus asistencias(asegurate de que sea valido): \n");
+                    printf("Escribe el pin del usuario para ver sus asistencias\n");
                     fflush(stdin);
                     scanf("%d", &pin);
                     if (checkPines(pin) != 1){ //verificar si ese pin existe en el sistema
