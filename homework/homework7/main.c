@@ -69,9 +69,11 @@ int main(){
         else{
             while (bucle == 1){
                 option = 0;
-                printf("\nEn que te puedo servir ahora?\n");
-                printf("1 si quieres ver las asistencias de un usuario    \t2 si quieres agregar un nuevo trabajador\n");
-                printf("3 si quiero ver las horas trabajadas de un usuario\t4 si quieres salir\n");
+                printf("\n¿En que te puedo servir ahora?\n");
+                printf("1 Si quieres ver las asistencias de un usuario\n);
+                printf("2 Si deseas agregar un trabajador nuevo\n");
+                printf("3 Si quiero ver las horas trabajadas de un usuario\n");
+                printf("4 Si deseas salir de este apartado\n");
                 fflush(stdin);
                 scanf("%d", &option);
                 switch (option){// acciones
