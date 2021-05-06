@@ -1,4 +1,4 @@
-#define "header.c"
+#include "header.c"
 
 int main(){
     FILE *flujo;
