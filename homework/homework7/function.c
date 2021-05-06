@@ -23,7 +23,7 @@ int Registro(void){
         fichero = fopen("system.txt", "a");
         printf("El nuevo pin es : %d\n", newpin);
       
-        printf("Introduce los dias que trabajara, no espacios.\n");
+        printf("Introduce los dias que trabajara, sin espacio alguno.\n");
         fflush(stdin);
       
         scanf("%s", dias);
