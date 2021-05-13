@@ -15,7 +15,7 @@ My project would have
 
 4 - Check it (Shows you a link to buy the book)
 
-5 - Go back /*this would be to go to the previous page*/ (It is just an idea, I am not sure if this would be in the final project at the end)
+5 - Go back /*this would be to go to the previous page*/
 
 ## CONTACT ME
 * ** Discord **: Lil Roi#7234
