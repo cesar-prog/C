@@ -1,4 +1,4 @@
-# FINAL PROJECT: LIBRARY AND DATA
+# FINAL PROJECT: BOOK SELECTOR APP
 > Library and data is a software where you can search an autor and scripts with extra information to promote the reading and the guest could be interested in reading.
 > 
 ## PROJECT PLAN
