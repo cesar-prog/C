@@ -18,10 +18,15 @@ My project would have
 
 4 - Go back /*this would be to go to the previous page*/
 ## Autoevaluation
+
 Complexity 2 - Assigning values and actions to the variables got me more tima than i've thought.
+
 Functionality 3- It works at all.
+
 Code 2 - I could cleant it more.
+
 Storage 0 - Jeje
+
 Documentation 3 - I have all, the video and the repo have all.
 
 ## References
