@@ -25,7 +25,7 @@ Functionality 3- It works at all.
 
 Code 2 - I could cleant it more.
 
-Storage 0 - Jeje
+Storage 2 - 
 
 Documentation 3 - I have all, the video and the repo have all.
 
