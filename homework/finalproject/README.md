@@ -23,9 +23,9 @@ Complexity 2 - Assigning values and actions to the variables got me more tima th
 
 Functionality 3- It works at all.
 
-Code 2 - I could cleant it more.
+Code 3 - It's easy to understand
 
-Storage 2 - 
+Storage 2 
 
 Documentation 3 - I have all, the video and the repo have all.
 
