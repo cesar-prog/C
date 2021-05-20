@@ -1,7 +1,9 @@
 # FINAL PROJECT: BOOK SELECTOR APP
-> YouTube video >>>
 > Library and data is a software where you can search a book and scripts with extra information to promote the reading and the guest could be interested in reading.
-> 
+>
+## YouTube video:
+** https://youtu.be/vIOEUPjpkcA **
+
 ## PROJECT PLAN
 My project would have
 * **TIME**: To have a notion of when you use the file
