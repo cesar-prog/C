@@ -2,7 +2,7 @@
 > Library and data is a software where you can search a book and scripts with extra information to promote the reading and the guest could be interested in reading.
 >
 ## YouTube video:
-** https://youtu.be/vIOEUPjpkcA **
+** https://youtu.be/vIOEUPjpkcA ** (I add an hour to have the same as Monterrey)
 
 ## PROJECT PLAN
 My project would have
